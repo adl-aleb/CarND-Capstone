@@ -127,6 +127,7 @@ class TLDetector(object):
             int: ID of traffic light color (specified in styx_msgs/TrafficLight)
 
         """
+<<<<<<< HEAD
         if(not self.has_image):
             self.prev_light_loc = None
             return False
@@ -178,3 +179,42 @@ if __name__ == '__main__':
         TLDetector()
     except rospy.ROSInterruptException:
         rospy.logerr('Could not start traffic node.')
+||||||| merged common ancestors
+        #TODO implement light color prediction
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        image_expanded = np.expand_dims(image, axis=0)
+
+        # Actual detection.
+        (boxes, scores, classes, num) = self.sess.run(
+                                    [self.detection_boxes, self.detection_scores, self.detection_classes, self.num_detections],
+                                    feed_dict={self.image_tensor: image_expanded})
+
+        if scores[0][0] > 0.9:
+            if classes[0][0] == 1:
+                return TrafficLight.GREEN
+            elif classes[0][0] == 2:
+                return TrafficLight.RED
+            elif classes[0][0] == 3:
+                return TrafficLight.YELLOW
+
+        return TrafficLight.UNKNOWN
+=======
+        #TODO implement light color prediction
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        image_expanded = np.expand_dims(image, axis=0)
+
+        # Actual detection.
+        (boxes, scores, classes, num) = self.sess.run(
+                                    [self.detection_boxes, self.detection_scores, self.detection_classes, self.num_detections],
+                                    feed_dict={self.image_tensor: image_expanded})
+
+        if scores[0][0] > 0.5:
+            if classes[0][0] == 1:
+                return TrafficLight.GREEN
+            elif classes[0][0] == 2:
+                return TrafficLight.RED
+            elif classes[0][0] == 3:
+                return TrafficLight.YELLOW
+
+        return TrafficLight.UNKNOWN
+>>>>>>> 64a6e53afc74f664f19e4f553b166af40fc58989
