@@ -2,7 +2,7 @@
 This is the capstone project for Udacity Self-Driving Car Nanodegree.
 
 ### Team Members
-Adalberto Gonzalez alebx32@gmail.com
+Adalberto Gonzalez adalberto.gonzalezayala@gmail.com
 
 Naresh Aluri aluri.naresh540@gmail.com
 
